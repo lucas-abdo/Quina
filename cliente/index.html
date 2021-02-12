@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <title>Quina</title>
+        <link rel="stylesheet" href="estilos/estilo.css">
+    </head>
+    <body>
+        <canvas height="720" width="720"></canvas>
+        <div class="controls-wrapper">
+            <ul id="events"></ul>
+            <div class="controls">
+                <div class="chat-wrapper">
+                    <form id="chat-form">
+                        <input id="chat" autocomplete="off" title="chat"/>
+                        <button id="enviar">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="fonte/cliente.js"></script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+{
+    "name": "servidor",
+    "version": "1.0.0",
+    "description": "Jogo Quina",
+    "main": "servidor.js",
+    "scripts": {
+        "start": "node servidor.js",
+        "dev": "nodemon servidor.js",
+        "test": "echo \"Erro: sem teste\" && exit 1"
+    },
+    "keywords": [
+        "Multiplayer",
+        "Quina",
+        "Socket.io"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lucasabdo/Quina"
+    },
+    "author": "Lucas",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "socket.io": "^3.1.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.4"
+    }
+}
