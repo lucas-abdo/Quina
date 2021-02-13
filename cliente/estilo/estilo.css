@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+input {
+    outline: none;
+    font-size: 1em;
+    padding: 0 5px;
+}
+
+button {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    padding: 3px 15px;
+    color: white;
+    line-height: 25px;
+    background-color: black;
+    border: none;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkgrey;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid lightgray;
+    overflow-y: scroll;
+}
+
+li {
+    padding: 10px 0px 0px 5px;
+}
+
+canvas {
+    display: block;
+    margin: 10px auto;
+}
+
+.controls-wrapper {
+    background-color: lightgray;
+    width: 720px;
+    margin: 20px auto;
+    border: 1px auto lightgray;
+}
+
+.chat-wrapper {
+    padding: 10px;
+}
+
+.chat-wrapper form {
+    display: flex;
+}
+
+.chat-wrapper form input {
+    font-size: 1rem;
+    margin: 0 10px 0 0;
+    padding: 0 5px;
+    flex-grow: 1;
+}
+
+.chat-wrapper form button {
+    width: 80px;
+}
+
+#events {
+    height: 150px;
+}
