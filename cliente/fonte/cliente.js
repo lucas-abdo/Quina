@@ -54,9 +54,18 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
         ctx.clearRect(0, 0, tela.width, tela.height);
     };
 
-    const reiniciar = () => {
+    const renderizarTabuleiro = (tabuleiro = []) => {
+        tabuleiro.forEach((linha, y) => {
+            linha.forEach((cor, x) => {
+                cor && preencherCirculo(x, y, cor);
+            });
+        });
+    };
+
+    const reiniciar = (tabuleiro) => {
         limpar();
         desenharGrade();
+        renderizarTabuleiro(tabuleiro);
     };
 
     const obterCoordenadasIntersecao = (x, y) => {
