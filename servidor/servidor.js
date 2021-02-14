@@ -22,7 +22,7 @@ io.on('connection', (sock) => {
 
     sock.on('turno', ({ x, y }) => {
         const ehVencedor = turno(x, y, cor);
-        io.emit('turno', { x, y, cor });
+        io.emit('turnoTabuleiro', obterTabuleiro());
         if (ehVencedor) {
             sock.emit('mensagem', "Você venceu!");
             io.emit('mensagem', "Nova rodada");

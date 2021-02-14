@@ -31,11 +31,14 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
     const ctx = tela.getContext('2d');
     const tamanhoCelula = Math.floor(tela.width / numCelulas);
 
-    const preencherCirculo = (x, y, cor) => {
-        ctx.beginPath();
-        ctx.arc(x * tamanhoCelula, y * tamanhoCelula, tamanhoCelula / 2, 0, 2 * Math.PI);
-        ctx.fillStyle = cor;
-        ctx.fill();
+    const reiniciar = (tabuleiro) => {
+        limpar();
+        desenharGrade();
+        renderizarTabuleiro(tabuleiro);
+    };
+
+    const limpar = () => {
+        ctx.clearRect(0, 0, tela.width, tela.height);
     };
 
     const desenharGrade = () => {
@@ -43,29 +46,26 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
         for (let i = 0; i < numCelulas + 1; i++) {
             ctx.moveTo(i * tamanhoCelula, 0);
             ctx.lineTo(i * tamanhoCelula, numCelulas * tamanhoCelula);
-
+            
             ctx.moveTo(0, i * tamanhoCelula);
             ctx.lineTo(numCelulas * tamanhoCelula, i * tamanhoCelula);
         }
         ctx.stroke();
     };
 
-    const limpar = () => {
-        ctx.clearRect(0, 0, tela.width, tela.height);
-    };
-
     const renderizarTabuleiro = (tabuleiro = []) => {
-        tabuleiro.forEach((linha, y) => {
-            linha.forEach((cor, x) => {
+        tabuleiro.forEach((coluna, x) => {
+            coluna.forEach((cor, y) => {
                 cor && preencherCirculo(x, y, cor);
             });
         });
     };
-
-    const reiniciar = (tabuleiro) => {
-        limpar();
-        desenharGrade();
-        renderizarTabuleiro(tabuleiro);
+    
+    const preencherCirculo = (x, y, cor) => {
+        ctx.beginPath();
+        ctx.arc(x * tamanhoCelula, y * tamanhoCelula, tamanhoCelula / 2, 0, 2 * Math.PI);
+        ctx.fillStyle = cor;
+        ctx.fill();
     };
 
     const obterCoordenadasIntersecao = (x, y) => {
@@ -75,12 +75,12 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
         };
     };
 
-    return { preencherCirculo, reiniciar, obterCoordenadasIntersecao };
+    return { renderizarTabuleiro, reiniciar, obterCoordenadasIntersecao };
 };
 
 (() => {
     const tela = document.querySelector('canvas');
-    const { preencherCirculo, reiniciar, obterCoordenadasIntersecao } = obterTabuleiro(tela);
+    const { renderizarTabuleiro, reiniciar, obterCoordenadasIntersecao } = obterTabuleiro(tela);
     const sock = io();
 
     const aoClicar = (e) => {
@@ -94,7 +94,7 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
 
     sock.on('tabuleiro', reiniciar);
     sock.on('mensagem', log);
-    sock.on('turno', ({ x, y, cor }) => preencherCirculo(x, y, cor));
+    sock.on('turnoTabuleiro', renderizarTabuleiro);
 
     document
         .querySelector('#chat-form')
