@@ -31,7 +31,7 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
     const ctx = tela.getContext('2d');
     const tamanhoCelula = Math.floor(tela.width / numCelulas);
 
-    const reiniciar = (tabuleiro) => {
+    const desenharTabuleiro = (tabuleiro) => {
         limpar();
         desenharGrade();
         renderizarTabuleiro(tabuleiro);
@@ -75,13 +75,17 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
         };
     };
 
-    return { renderizarTabuleiro, reiniciar, obterCoordenadasIntersecao };
+    return { desenharTabuleiro, obterCoordenadasIntersecao };
 };
 
 (() => {
     const tela = document.querySelector('canvas');
-    const { renderizarTabuleiro, reiniciar, obterCoordenadasIntersecao } = obterTabuleiro(tela);
+    const { desenharTabuleiro, obterCoordenadasIntersecao } = obterTabuleiro(tela);
     const sock = io();
+
+    sock.on('inicio', desenharTabuleiro);
+    sock.on('turnoTabuleiro', desenharTabuleiro);
+    sock.on('mensagem', log);
 
     const aoClicar = (e) => {
         const { x, y } = obterCoordenadasDoMouse(tela, e);
@@ -92,14 +96,10 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
         const { x, y } = obterCoordenadasDoMouse(tela, e);
     };
 
-    sock.on('tabuleiro', reiniciar);
-    sock.on('mensagem', log);
-    sock.on('turnoTabuleiro', renderizarTabuleiro);
+    tela.addEventListener('click', aoClicar);
+    tela.addEventListener('mousemove', aoMover);
 
     document
         .querySelector('#chat-form')
         .addEventListener('submit', aoEnviarMensagem(sock));
-
-    tela.addEventListener('click', aoClicar);
-    tela.addEventListener('mousemove', aoMover);
 })();

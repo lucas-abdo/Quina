@@ -11,12 +11,13 @@ const io = socketio(servidor);
 const { obterTabuleiro, limpar, turno } = tabuleiroRegras(18);
 
 let entrada = 0;
+const cores = ['rgb(180, 0, 0)', 'rgb(235, 180, 0)'];
 
 io.on('connection', (sock) => {
     ++entrada;
-    const cor = entrada == 1 ? 'rgb(180, 0, 0)' : (entrada == 2 ? "rgb(235, 180, 0)" : 'black');
+    const cor = entrada == 1 ? cores[0] : (entrada == 2 ? cores[1] : 'black');
     
-    sock.emit('tabuleiro', obterTabuleiro());
+    sock.emit('inicio', obterTabuleiro());
     
     sock.on('mensagem', (texto) => io.emit('mensagem', texto));
 
@@ -27,7 +28,7 @@ io.on('connection', (sock) => {
             sock.emit('mensagem', "Você venceu!");
             io.emit('mensagem', "Nova rodada");
             limpar();
-            io.emit('tabuleiro');
+            io.emit('inicio');
         }
     });
 });
