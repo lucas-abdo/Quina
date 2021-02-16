@@ -26,9 +26,12 @@ tabuleiroRegras = (tamanho) => {
     };
 
     const turno = (x, y, cor) => {
-        tabuleiro[x][y] = cor;
-        atualizarCapturas(x, y);
-        return ehTurnoVencedor(x, y);
+        if (tabuleiro[x][y] == null) {
+            tabuleiro[x][y] = cor;
+            atualizarCapturas(x, y);
+            return ehTurnoVencedor(x, y);
+        }
+        return false;
     };
 
     const atualizarCapturas = (x, y) => {
