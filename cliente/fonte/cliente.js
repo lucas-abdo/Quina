@@ -27,6 +27,11 @@ const obterCoordenadasDoMouse = (elemento, evento) => {
     };
 };
 
+const aoEscolherCor = (sock, { vermelho, amarelo }) => (e) => {
+    e.preventDefault();
+    sock.emit('escolherCor', { vermelho, amarelo });
+};
+
 const obterTabuleiro = (tela, numCelulas = 18) => {
     const ctx = tela.getContext('2d');
     const tamanhoCelula = Math.floor(tela.width / numCelulas);
@@ -102,4 +107,12 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
     document
         .querySelector('#chat-form')
         .addEventListener('submit', aoEnviarMensagem(sock));
+
+    document
+        .querySelector('#vermelho')
+        .addEventListener('click', aoEscolherCor(sock, { vermelho: true, amarelo: false }));
+    
+    document
+        .querySelector('#amarelo')
+        .addEventListener('click', aoEscolherCor(sock, { vermelho: false, amarelo: true }));
 })();

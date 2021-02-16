@@ -47,6 +47,7 @@ canvas {
     background-color: lightgray;
     width: 720px;
     margin: 20px auto;
+    margin-bottom: 50px;
     border: 1px auto lightgray;
 }
 
@@ -71,4 +72,30 @@ canvas {
 
 #events {
     height: 150px;
+}
+
+#vermelho {
+    background-color: rgb(180, 0, 0);
+    width: 50%;
+    height: 3em;
+    float: left;
+    border-radius: 0%;
+    margin: auto;
+}
+
+#vermelho:hover {
+    background-color: rgb(230, 75, 75);
+}
+
+#amarelo {
+    background-color: rgb(235, 180, 0);
+    width: 50%;
+    height: 3em;
+    float: right;
+    border-radius: 0%;
+    margin: auto;
+}
+
+#amarelo:hover {
+    background-color: rgb(220, 190, 100);
 }

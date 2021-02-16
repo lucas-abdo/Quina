@@ -7,6 +7,18 @@ tabuleiroRegras = (tamanho) => {
 
     const obterTabuleiro = () => tabuleiro;
 
+    const obterCor = (vermelho, amarelo) => {
+        if (vermelho && cores[0][1] == false) {
+            cores[0][1] = true;
+            return cores[0][0];
+        }
+        else if (amarelo && cores[1][1] == false) {
+            cores[1][1] = true;
+            return cores[1][0];
+        }
+        return null;
+    };
+
     const limpar = () => {
         tabuleiro = Array(intersecoes).fill().map(() => Array(intersecoes).fill(null));
         cores = ['rgb(180, 0, 0)', 'rgb(235, 180, 0)'].map((cor) => [cor, false]);
@@ -103,7 +115,7 @@ tabuleiroRegras = (tamanho) => {
 
     limpar();
 
-    return { obterTabuleiro, limpar, turno };
+    return { obterTabuleiro, obterCor, limpar, turno };
 };
 
 module.exports = tabuleiroRegras;

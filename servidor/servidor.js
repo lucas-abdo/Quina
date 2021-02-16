@@ -8,27 +8,28 @@ app.use(express.static(`${__dirname}/../cliente`));
 
 const servidor = http.createServer(app);
 const io = socketio(servidor);
-const { obterTabuleiro, limpar, turno } = tabuleiroRegras(18);
-
-let entrada = 0;
-const cores = ['rgb(180, 0, 0)', 'rgb(235, 180, 0)'];
+const { obterTabuleiro, obterCor, limpar, turno } = tabuleiroRegras(18);
 
 io.on('connection', (sock) => {
-    ++entrada;
-    const cor = entrada == 1 ? cores[0] : (entrada == 2 ? cores[1] : 'black');
-    
+    let cor = null;
     sock.emit('inicio', obterTabuleiro());
+
+    sock.on('escolherCor', ({ vermelho, amarelo }) => {
+        cor = obterCor(vermelho, amarelo);
+    });
     
     sock.on('mensagem', (texto) => io.emit('mensagem', texto));
 
     sock.on('turno', ({ x, y }) => {
-        const ehVencedor = turno(x, y, cor);
-        io.emit('turnoTabuleiro', obterTabuleiro());
-        if (ehVencedor) {
-            sock.emit('mensagem', "Você venceu!");
-            io.emit('mensagem', "Nova rodada");
-            limpar();
-            io.emit('inicio');
+        if (cor != null){
+            const ehVencedor = turno(x, y, cor);
+            io.emit('turnoTabuleiro', obterTabuleiro());
+            if (ehVencedor) {
+                sock.emit('mensagem', "Você venceu!");
+                io.emit('mensagem', "Nova rodada");
+                limpar();
+                io.emit('inicio');
+            }
         }
     });
 });
