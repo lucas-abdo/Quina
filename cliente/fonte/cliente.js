@@ -83,6 +83,14 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
     return { desenharTabuleiro, obterCoordenadasIntersecao };
 };
 
+const atualizarContadoresCapturas = (capturas) => {
+    capturasVermelho = document.querySelector('#capturasVermelho');
+    capturasAmarelo = document.querySelector('#capturasAmarelo');
+
+    capturasVermelho.innerHTML = capturas[0][1];
+    capturasAmarelo.innerHTML = capturas[1][1];
+};
+
 (() => {
     const tela = document.querySelector('canvas');
     const { desenharTabuleiro, obterCoordenadasIntersecao } = obterTabuleiro(tela);
@@ -91,6 +99,7 @@ const obterTabuleiro = (tela, numCelulas = 18) => {
     sock.on('inicio', desenharTabuleiro);
     sock.on('turnoTabuleiro', desenharTabuleiro);
     sock.on('mensagem', log);
+    sock.on('capturas', atualizarContadoresCapturas);
 
     const aoClicar = (e) => {
         const { x, y } = obterCoordenadasDoMouse(tela, e);

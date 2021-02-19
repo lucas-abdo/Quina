@@ -116,9 +116,11 @@ tabuleiroRegras = (tamanho) => {
         }
     };
 
+    const obterCapturas = () => capturas;
+
     limpar();
 
-    return { obterTabuleiro, obterCor, limpar, turno };
+    return { obterTabuleiro, obterCor, limpar, turno, obterCapturas };
 };
 
 module.exports = tabuleiroRegras;

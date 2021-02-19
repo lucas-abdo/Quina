@@ -8,7 +8,7 @@ app.use(express.static(`${__dirname}/../cliente`));
 
 const servidor = http.createServer(app);
 const io = socketio(servidor);
-const { obterTabuleiro, obterCor, limpar, turno } = tabuleiroRegras(18);
+const { obterTabuleiro, obterCor, limpar, turno, obterCapturas } = tabuleiroRegras(18);
 
 io.on('connection', (sock) => {
     let cor = null;
@@ -24,6 +24,7 @@ io.on('connection', (sock) => {
         if (cor != null){
             const ehVencedor = turno(x, y, cor);
             io.emit('turnoTabuleiro', obterTabuleiro());
+            io.emit('capturas', obterCapturas());
             if (ehVencedor) {
                 sock.emit('mensagem', "Você venceu!");
                 io.emit('mensagem', "Nova rodada");

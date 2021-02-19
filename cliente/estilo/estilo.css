@@ -11,10 +11,8 @@ input {
 }
 
 button {
-    text-transform: uppercase;
-    font-size: 0.8rem;
+    height: 40px;
     padding: 3px 15px;
-    color: white;
     line-height: 25px;
     background-color: black;
     border: none;
@@ -67,7 +65,7 @@ canvas {
 }
 
 .chat-wrapper form button {
-    width: 80px;
+    width: 40px;
 }
 
 #events {
@@ -77,7 +75,6 @@ canvas {
 #vermelho {
     background-color: rgb(180, 0, 0);
     width: 50%;
-    height: 3em;
     float: left;
     border-radius: 0%;
     margin: auto;
@@ -90,7 +87,6 @@ canvas {
 #amarelo {
     background-color: rgb(235, 180, 0);
     width: 50%;
-    height: 3em;
     float: right;
     border-radius: 0%;
     margin: auto;
@@ -98,4 +94,21 @@ canvas {
 
 #amarelo:hover {
     background-color: rgb(220, 190, 100);
+}
+
+label {
+    font-weight: bold;
+    font-size: 2.5em;
+    padding: 5px 0 10px 0;
+    height: 1em;
+}
+
+#capturasVermelho {
+    float: left;
+    margin-left: 25%;
+}
+
+#capturasAmarelo {
+    float: right;
+    margin-right: 25%;
 }
