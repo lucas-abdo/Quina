@@ -21,7 +21,7 @@ io.on('connection', (sock) => {
     sock.on('mensagem', (texto) => io.emit('mensagem', texto));
 
     sock.on('turno', ({ x, y }) => {
-        if (cor != null){
+        if (cor != null) {
             const ehVencedor = turno(x, y, cor);
             io.emit('turnoTabuleiro', obterTabuleiro());
             io.emit('capturas', obterCapturas());

@@ -6,13 +6,13 @@ tabuleiroRegras = (tamanho) => {
     const QTD_PECAS_CAPTURA = 2;
 
     const obterTabuleiro = () => tabuleiro;
-
+    
     const obterCor = (vermelho, amarelo) => {
-        if (vermelho && cores[0][1] == false) {
+        if (vermelho) {
             cores[0][1] = true;
             return cores[0][0];
         }
-        else if (amarelo && cores[1][1] == false) {
+        else if (amarelo) {
             cores[1][1] = true;
             return cores[1][0];
         }
