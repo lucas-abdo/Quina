@@ -38,7 +38,6 @@ li {
 
 canvas {
     display: block;
-    margin: 10px auto;
 }
 
 .controls-wrapper {
@@ -115,7 +114,7 @@ label {
 
 .main {
     float: right;
-    margin-right: 22%;
+    margin: 10px 22% 0 0;
 }
 
 span {
@@ -132,5 +131,4 @@ span {
 
 #turnYellow {
     margin: 345px 0 0 10px;
-
 }

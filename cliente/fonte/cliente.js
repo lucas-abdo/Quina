@@ -33,8 +33,8 @@ const aoEscolherCor = (sock, { vermelho, amarelo }) => (e) => {
 };
 
 const atualizarIndicadorTurno = ({ cor, vermelho, amarelo }) => {
-    const indicadorVermelho = document.getElementById('turnRed');
-    const indicadorAmarelo = document.getElementById('turnYellow');
+    const indicadorVermelho = document.querySelector('#turnRed');
+    const indicadorAmarelo = document.querySelector('#turnYellow');
     
     if (vermelho) {
         indicadorVermelho.style.backgroundColor = cor;
