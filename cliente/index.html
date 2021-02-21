@@ -5,21 +5,27 @@
         <link rel="stylesheet" href="estilo/estilo.css">
     </head>
     <body>
-        <canvas height="720" width="720"></canvas>
-        <div class="controls-wrapper">
-            <ul id="events"></ul>
-            <div class="controls">
-                <div class="chat-wrapper">
-                    <form id="chat-form">
-                        <input id="chat" autocomplete="off"/>
-                        <button id="enviar"></button>
-                    </form>
+        <div>
+            <span id="turnRed"></span>
+            <span id="turnYellow"></span>
+        </div>
+        <div class="main">
+            <canvas height="720" width="720"></canvas>
+            <div class="controls-wrapper">
+                <ul id="events"></ul>
+                <div class="controls">
+                    <div class="chat-wrapper">
+                        <form id="chat-form">
+                            <input id="chat" autocomplete="off"/>
+                            <button id="enviar"></button>
+                        </form>
+                    </div>
                 </div>
+                <button id="vermelho"></button>
+                <button id="amarelo"></button>
+                <label id="capturasVermelho"></label>
+                <label id="capturasAmarelo"></label>
             </div>
-            <button id="vermelho"></button>
-            <button id="amarelo"></button>
-            <label id="capturasVermelho"></label>
-            <label id="capturasAmarelo"></label>
         </div>
 
         <script src="/socket.io/socket.io.js"></script>

@@ -32,6 +32,20 @@ const aoEscolherCor = (sock, { vermelho, amarelo }) => (e) => {
     sock.emit('escolherCor', { vermelho, amarelo });
 };
 
+const atualizarIndicadorTurno = ({ cor, vermelho, amarelo }) => {
+    const indicadorVermelho = document.getElementById('turnRed');
+    const indicadorAmarelo = document.getElementById('turnYellow');
+    
+    if (vermelho) {
+        indicadorVermelho.style.backgroundColor = cor;
+        indicadorAmarelo.style.backgroundColor = null;
+    }
+    else if (amarelo) {
+        indicadorAmarelo.style.backgroundColor = cor;
+        indicadorVermelho.style.backgroundColor = null;
+    }
+}
+
 const obterTabuleiro = (tela, numCelulas = 18) => {
     const ctx = tela.getContext('2d');
     const tamanhoCelula = Math.floor(tela.width / numCelulas);
@@ -100,6 +114,7 @@ const atualizarContadoresCapturas = (capturas) => {
     sock.on('turnoTabuleiro', desenharTabuleiro);
     sock.on('mensagem', log);
     sock.on('capturas', atualizarContadoresCapturas);
+    sock.on('indicaTurno', atualizarIndicadorTurno);
 
     const aoClicar = (e) => {
         const { x, y } = obterCoordenadasDoMouse(tela, e);

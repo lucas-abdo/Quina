@@ -112,3 +112,25 @@ label {
     float: right;
     margin-right: 25%;
 }
+
+.main {
+    float: right;
+    margin-right: 22%;
+}
+
+span {
+    float: left;
+    background-color: lightgray;
+    height: 50px;
+    width: 50px;
+    border-radius: 25%;
+}
+
+#turnRed {
+    margin: 345px 0 0 160px;
+}
+
+#turnYellow {
+    margin: 345px 0 0 10px;
+
+}

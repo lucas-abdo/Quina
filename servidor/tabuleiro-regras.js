@@ -118,9 +118,26 @@ tabuleiroRegras = (tamanho) => {
 
     const obterCapturas = () => capturas;
 
+    const obterCorProximoTurno = (cor) => {
+        if (cor == cores[0][0]) {
+            return {
+                cor: cores[1][0],
+                vermelho: false,
+                amarelo: true
+            };
+        }
+        else if (cor == cores[1][0]){
+            return {
+                cor: cores[0][0],
+                vermelho: true,
+                amarelo: false
+            };
+        }
+    }
+
     limpar();
 
-    return { obterTabuleiro, obterCor, limpar, turno, obterCapturas };
+    return { obterTabuleiro, obterCor, limpar, turno, obterCapturas, obterCorProximoTurno };
 };
 
 module.exports = tabuleiroRegras;
